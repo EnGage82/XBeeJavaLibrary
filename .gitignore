@@ -1,5 +1,6 @@
 bin
 /libs
+.idea
 .project
 .classpath
 /target

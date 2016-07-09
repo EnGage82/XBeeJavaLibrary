@@ -11,6 +11,7 @@
  */
 package com.digi.xbee.api;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.TimeoutException;
 import com.digi.xbee.api.exceptions.XBeeException;
 import com.digi.xbee.api.models.XBee16BitAddress;
@@ -52,7 +52,7 @@ public class SendDataHighLevelZigBeeTest {
 	@Before
 	public void setup() throws Exception {
 		// Instantiate a ZigBeeDevice object with a mocked interface.
-		zigbeeDevice = PowerMockito.spy(new ZigBeeDevice(Mockito.mock(SerialPortRxTx.class)));
+		zigbeeDevice = PowerMockito.spy(new ZigBeeDevice(Mockito.mock(SerialPortJavacomm.class)));
 		
 		// Mock Transmit packet.
 		transmitPacket = Mockito.mock(TransmitPacket.class);

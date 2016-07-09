@@ -11,12 +11,12 @@
  */
 package com.digi.xbee.api;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.TimeoutException;
 import com.digi.xbee.api.exceptions.XBeeException;
 import com.digi.xbee.api.models.XBee16BitAddress;
@@ -38,7 +38,7 @@ public class SendDataRemoteDeviceTest {
 	@Before
 	public void setup() throws Exception {
 		// Mock an RxTx IConnectionInterface.
-		SerialPortRxTx mockedPort = Mockito.mock(SerialPortRxTx.class);
+		SerialPortJavacomm mockedPort = Mockito.mock(SerialPortJavacomm.class);
 		
 		// Instantiate an XBeeDevice object with the mocked interface.
 		xbeeDevice = PowerMockito.spy(new XBeeDevice(mockedPort));
@@ -166,7 +166,7 @@ public class SendDataRemoteDeviceTest {
 	@Test
 	public void testSendDataRaw80264() throws TimeoutException, XBeeException {
 		// Mock an 802.15.4 device (it is not possible to test the method when the protocol is 802.15.4 with a standard XBeeDevice object).
-		Raw802Device raw802Device = Mockito.spy(new Raw802Device(Mockito.mock(SerialPortRxTx.class)));
+		Raw802Device raw802Device = Mockito.spy(new Raw802Device(Mockito.mock(SerialPortJavacomm.class)));
 		
 		// Do nothing when the sendData(XBee64BitAddress, byte[]) method is called.
 		Mockito.doNothing().when(raw802Device).sendData(Mockito.any(XBee64BitAddress.class), Mockito.any(byte[].class));
@@ -189,7 +189,7 @@ public class SendDataRemoteDeviceTest {
 	@Test
 	public void testSendDataRaw80216() throws TimeoutException, XBeeException {
 		// Mock an 802.15.4 device (it is not possible to test the method when the protocol is 802.15.4 with a standard XBeeDevice object).
-		Raw802Device raw802Device = Mockito.spy(new Raw802Device(Mockito.mock(SerialPortRxTx.class)));
+		Raw802Device raw802Device = Mockito.spy(new Raw802Device(Mockito.mock(SerialPortJavacomm.class)));
 		
 		// Do nothing when the sendData(XBee16BitAddress, byte[]) method is called.
 		Mockito.doNothing().when(raw802Device).sendData(Mockito.any(XBee16BitAddress.class), Mockito.any(byte[].class));

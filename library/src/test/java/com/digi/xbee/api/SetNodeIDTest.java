@@ -13,12 +13,12 @@ package com.digi.xbee.api;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -38,7 +38,7 @@ public class SetNodeIDTest {
 	@Before
 	public void setup() throws Exception {
 		// Instantiate a local XBeeDevice object.
-		xbeeDevice = PowerMockito.spy(new XBeeDevice(Mockito.mock(SerialPortRxTx.class)));
+		xbeeDevice = PowerMockito.spy(new XBeeDevice(Mockito.mock(SerialPortJavacomm.class)));
 	}
 	
 	/**

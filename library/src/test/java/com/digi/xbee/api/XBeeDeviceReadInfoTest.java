@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -27,7 +28,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -68,7 +68,7 @@ public class XBeeDeviceReadInfoTest {
 	
 	@Before
 	public void setup() throws Exception {
-		SerialPortRxTx mockPort = Mockito.mock(SerialPortRxTx.class);
+		SerialPortJavacomm mockPort = Mockito.mock(SerialPortJavacomm.class);
 		
 		// Instantiate an XBeeDevice object with basic parameters.
 		xbeeDevice = PowerMockito.spy(new XBeeDevice(mockPort));

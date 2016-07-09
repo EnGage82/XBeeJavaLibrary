@@ -16,11 +16,11 @@ import static org.junit.Assert.fail;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -40,14 +40,14 @@ public class SetPWMTest {
 	private static final int DUTY_CYCLE_OVER_100_VALUE = 150;
 	
 	// Variables.
-	private SerialPortRxTx mockedPort;
+	private SerialPortJavacomm mockedPort;
 	
 	private XBeeDevice xbeeDevice;
 	
 	@Before
 	public void setup() {
 		// Mock an RxTx IConnectionInterface.
-		mockedPort = Mockito.mock(SerialPortRxTx.class);
+		mockedPort = Mockito.mock(SerialPortJavacomm.class);
 		Mockito.when(mockedPort.isOpen()).thenReturn(true);
 		
 		// Instantiate an XBeeDevice object with basic parameters.

@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.OperationNotSupportedException;
 import com.digi.xbee.api.exceptions.XBeeException;
 import com.digi.xbee.api.io.IOLine;
@@ -40,14 +40,14 @@ public class GetADCTest {
 	private final static String METHOD_READ_IO_SAMPLE = "readIOSample";
 	
 	// Variables.
-	private SerialPortRxTx mockedPort;
+	private SerialPortJavacomm mockedPort;
 	
 	private XBeeDevice xbeeDevice;
 	
 	@Before
 	public void setup() {
 		// Mock an RxTx IConnectionInterface.
-		mockedPort = Mockito.mock(SerialPortRxTx.class);
+		mockedPort = Mockito.mock(SerialPortJavacomm.class);
 		Mockito.when(mockedPort.isOpen()).thenReturn(true);
 		
 		// Instantiate an XBeeDevice object with basic parameters.

@@ -5,6 +5,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -20,7 +21,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
 import com.digi.xbee.api.connection.DataReader;
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.models.OperatingMode;
 import com.digi.xbee.api.models.XBee16BitAddress;
@@ -43,7 +43,7 @@ public class XBeeDeviceReadDataTest {
 	// Variables.
 	private XBeeDevice xbeeDevice;
 	
-	private SerialPortRxTx mockConnectionInterface;
+	private SerialPortJavacomm mockConnectionInterface;
 	
 	//private DataReader mockDataReader;
 	
@@ -59,7 +59,7 @@ public class XBeeDeviceReadDataTest {
 		addr16 = new XBee16BitAddress("9634");
 		receivedData = "Received data";
 		
-		mockConnectionInterface = Mockito.mock(SerialPortRxTx.class);
+		mockConnectionInterface = Mockito.mock(SerialPortJavacomm.class);
 		
 		Mockito.doAnswer(new Answer<Object>() {
 			public Object answer(InvocationOnMock invocation) throws Exception {

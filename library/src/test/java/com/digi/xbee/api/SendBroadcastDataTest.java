@@ -11,11 +11,11 @@
  */
 package com.digi.xbee.api;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.models.XBee64BitAddress;
 
 public class SendBroadcastDataTest {
@@ -31,7 +31,7 @@ public class SendBroadcastDataTest {
 	@Test
 	public void testSendBroadcastDataSuccess() throws Exception {
 		// Instantiate an XBeeDevice object with a mocked interface.
-		XBeeDevice xbeeDevice = PowerMockito.spy(new XBeeDevice(Mockito.mock(SerialPortRxTx.class)));
+		XBeeDevice xbeeDevice = PowerMockito.spy(new XBeeDevice(Mockito.mock(SerialPortJavacomm.class)));
 		
 		// Do nothing when the sendData(XBee64BitAddress, byte[]) method is called.
 		Mockito.doNothing().when(xbeeDevice).sendData(Mockito.any(XBee64BitAddress.class), Mockito.any(byte[].class));

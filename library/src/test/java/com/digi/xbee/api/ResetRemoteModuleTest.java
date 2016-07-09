@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -43,7 +43,7 @@ public class ResetRemoteModuleTest {
 	private static final String SEND_AT_COMMAND_METHOD = "sendATCommand";
 	
 	// Variables.
-	private SerialPortRxTx connectionInterface;
+	private SerialPortJavacomm connectionInterface;
 	private RemoteXBeeDevice remoteXBeeDevice;
 	private XBeeDevice localXBeeDevice;
 	
@@ -54,7 +54,7 @@ public class ResetRemoteModuleTest {
 	@Before
 	public void setup() throws Exception {
 		// Mock the connection interface to be returned by the XBee class.
-		connectionInterface = Mockito.mock(SerialPortRxTx.class);
+		connectionInterface = Mockito.mock(SerialPortJavacomm.class);
 		Mockito.when(connectionInterface.isOpen()).thenReturn(true);
 		
 		// Mock the local XBee device and 64-bit address objects necessary to instantiate a remote 

@@ -15,6 +15,7 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -31,7 +32,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.digi.xbee.api.connection.DataReader;
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
 import com.digi.xbee.api.exceptions.TimeoutException;
@@ -41,14 +41,14 @@ import com.digi.xbee.api.models.ATCommandResponse;
 import com.digi.xbee.api.models.OperatingMode;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({XBeeDevice.class, SerialPortRxTx.class, DataReader.class, Thread.class})
+@PrepareForTest({XBeeDevice.class, SerialPortJavacomm.class, DataReader.class, Thread.class})
 public class XBeeDeviceDetermineOperatingModeTest {
 	
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
 	
 	// Variables.
-	private SerialPortRxTx connectionInterface;
+	private SerialPortJavacomm connectionInterface;
 	private XBeeDevice xbeeDevice;
 	private DataReader dataReader;
 	private OperatingMode dataReaderOperatingMode;
@@ -75,7 +75,7 @@ public class XBeeDeviceDetermineOperatingModeTest {
 		dataReaderOperatingMode = null;
 		
 		// Mock the connection interface to be returned by the XBee class.
-		connectionInterface = Mockito.mock(SerialPortRxTx.class);
+		connectionInterface = Mockito.mock(SerialPortJavacomm.class);
 		// Stub the 'open' method of the connectionInterface mock so when checking if the 
 		// interface is open next time it returns true.
 		Mockito.doAnswer(new Answer<Object>() {

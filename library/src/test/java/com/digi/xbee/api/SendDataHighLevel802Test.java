@@ -11,6 +11,7 @@
  */
 package com.digi.xbee.api;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
 import com.digi.xbee.api.exceptions.OperationNotSupportedException;
@@ -50,7 +50,7 @@ public class SendDataHighLevel802Test {
 	@Before
 	public void setup() throws Exception {
 		// Instantiate a Raw802Device object with a mocked interface.
-		raw802Device = PowerMockito.spy(new Raw802Device(Mockito.mock(SerialPortRxTx.class)));
+		raw802Device = PowerMockito.spy(new Raw802Device(Mockito.mock(SerialPortJavacomm.class)));
 		
 		// Mock Tx16 packet.
 		tx16Packet = Mockito.mock(TX16Packet.class);

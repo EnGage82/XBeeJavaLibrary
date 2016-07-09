@@ -13,6 +13,7 @@ package com.digi.xbee.api;
 
 import static org.junit.Assert.*;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.digi.xbee.api.connection.DataReader;
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.InterfaceAlreadyOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
 import com.digi.xbee.api.exceptions.OperationNotSupportedException;
@@ -38,14 +38,14 @@ import com.digi.xbee.api.models.XBee64BitAddress;
 public class XBeeDeviceConnectTest {
 	
 	// Variables.
-	private SerialPortRxTx connectionInterface;
+	private SerialPortJavacomm connectionInterface;
 	private XBeeDevice xbeeDevice;
 	private DataReader dataReader;
 	
 	@Before
 	public void setup() throws Exception {
 		// Mock the connection interface to be returned by the XBee class.
-		connectionInterface = Mockito.mock(SerialPortRxTx.class);
+		connectionInterface = Mockito.mock(SerialPortJavacomm.class);
 		// Stub the 'open' method of the connectionInterface mock so when checking if the 
 		// interface is open next time it returns true.
 		Mockito.doAnswer(new Answer<Object>() {

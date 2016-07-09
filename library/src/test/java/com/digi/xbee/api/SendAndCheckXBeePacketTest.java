@@ -13,12 +13,12 @@ package com.digi.xbee.api;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
 import com.digi.xbee.api.exceptions.TimeoutException;
@@ -51,7 +51,7 @@ public class SendAndCheckXBeePacketTest {
 	@Before
 	public void setup() throws Exception {
 		// Instantiate an XBeeDevice object with the mocked interface.
-		xbeeDevice = PowerMockito.spy(new XBeeDevice(Mockito.mock(SerialPortRxTx.class)));
+		xbeeDevice = PowerMockito.spy(new XBeeDevice(Mockito.mock(SerialPortJavacomm.class)));
 		
 		// Mock Explicit Addressing packet.
 		transmitPacket = Mockito.mock(TransmitPacket.class);

@@ -11,12 +11,12 @@
  */
 package com.digi.xbee.api;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.OperationNotSupportedException;
 import com.digi.xbee.api.exceptions.TimeoutException;
 import com.digi.xbee.api.exceptions.XBeeException;
@@ -44,7 +44,7 @@ public class SendExplicitDataAsyncRemoteDeviceTest {
 	@Before
 	public void setup() throws Exception {
 		// Mock an RxTx IConnectionInterface.
-		SerialPortRxTx mockedPort = Mockito.mock(SerialPortRxTx.class);
+		SerialPortJavacomm mockedPort = Mockito.mock(SerialPortJavacomm.class);
 		
 		// Instantiate an XBeeDevice object with the mocked interface.
 		xbeeDevice = PowerMockito.spy(new XBeeDevice(mockedPort));

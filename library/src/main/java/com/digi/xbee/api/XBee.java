@@ -12,8 +12,8 @@
 package com.digi.xbee.api;
 
 import com.digi.xbee.api.connection.IConnectionInterface;
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import com.digi.xbee.api.connection.serial.SerialPortParameters;
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 
 /**
  * Helper class used to create a serial port connection interface.
@@ -35,7 +35,7 @@ public class XBee {
 	 * @see com.digi.xbee.api.connection.IConnectionInterface
 	 */
 	public static IConnectionInterface createConnectiontionInterface(String port, int baudRate) {
-		IConnectionInterface connectionInterface = new SerialPortRxTx(port, baudRate);
+		IConnectionInterface connectionInterface = new SerialPortJavacomm(port, baudRate);
 		return connectionInterface;
 	}
 	
@@ -56,7 +56,7 @@ public class XBee {
 	 * @see com.digi.xbee.api.connection.serial.SerialPortParameters
 	 */
 	public static IConnectionInterface createConnectiontionInterface(String port, SerialPortParameters serialPortParameters) {
-		IConnectionInterface connectionInterface = new SerialPortRxTx(port, serialPortParameters);
+		IConnectionInterface connectionInterface = new SerialPortJavacomm(port, serialPortParameters);
 		return connectionInterface;
 	}
 }

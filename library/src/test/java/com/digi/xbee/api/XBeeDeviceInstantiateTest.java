@@ -13,6 +13,7 @@ package com.digi.xbee.api;
 
 import static org.junit.Assert.*;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import com.digi.xbee.api.connection.serial.SerialPortParameters;
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({XBee.class, XBeeDevice.class, SerialPortParameters.class})
@@ -31,7 +31,7 @@ public class XBeeDeviceInstantiateTest {
 	
 	// Variables.
 	private SerialPortParameters serialPortParameters;
-	private SerialPortRxTx connectionInterface;
+	private SerialPortJavacomm connectionInterface;
 	
 	@Before
 	public void setup() throws Exception {
@@ -39,7 +39,7 @@ public class XBeeDeviceInstantiateTest {
 		serialPortParameters = PowerMockito.mock(SerialPortParameters.class);
 		
 		// Mock the connection interface to be returned by the XBee class.
-		connectionInterface = PowerMockito.mock(SerialPortRxTx.class);
+		connectionInterface = PowerMockito.mock(SerialPortJavacomm.class);
 		
 		// Prepare the XBee class to return the mocked connection interface when asking to create a connectionInterface.
 		PowerMockito.mockStatic(XBee.class);

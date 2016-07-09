@@ -15,6 +15,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +24,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -42,7 +42,7 @@ public class ResetModuleTest {
 	private static final String WAIT_FOR_MODEM_RESET_STATUS_PACKET_METHOD = "waitForModemResetStatusPacket";
 	
 	// Variables.
-	private SerialPortRxTx connectionInterface;
+	private SerialPortJavacomm connectionInterface;
 	private XBeeDevice xbeeDevice;
 	
 	private ATCommand atCommand;
@@ -52,7 +52,7 @@ public class ResetModuleTest {
 	@Before
 	public void setup() throws Exception {
 		// Mock an RxTx IConnectionInterface.
-		connectionInterface = Mockito.mock(SerialPortRxTx.class);
+		connectionInterface = Mockito.mock(SerialPortJavacomm.class);
 		// When checking if the connection is open, return true.
 		Mockito.when(connectionInterface.isOpen()).thenReturn(true);
 		

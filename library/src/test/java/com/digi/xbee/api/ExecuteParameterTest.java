@@ -13,12 +13,12 @@ package com.digi.xbee.api;
 
 import java.io.IOException;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -36,7 +36,7 @@ public class ExecuteParameterTest {
 	private static final String PARAM_AC = "AC";
 	
 	// Variables.
-	private SerialPortRxTx mockedPort;
+	private SerialPortJavacomm mockedPort;
 	private XBeeDevice xbeeDevice;
 	
 	private ATCommandResponse mocketATCommandResponse;
@@ -44,7 +44,7 @@ public class ExecuteParameterTest {
 	@Before
 	public void setup() {
 		// Mock an RxTx IConnectionInterface.
-		mockedPort = Mockito.mock(SerialPortRxTx.class);
+		mockedPort = Mockito.mock(SerialPortJavacomm.class);
 		Mockito.when(mockedPort.isOpen()).thenReturn(true);
 		
 		// Instantiate an XBeeDevice object with basic parameters.

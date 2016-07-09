@@ -13,6 +13,7 @@ package com.digi.xbee.api;
 
 import static org.junit.Assert.*;
 
+import com.digi.xbee.api.connection.serial.SerialPortJavacomm;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +22,6 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.digi.xbee.api.connection.serial.SerialPortRxTx;
 import com.digi.xbee.api.exceptions.ATCommandException;
 import com.digi.xbee.api.exceptions.InterfaceNotOpenException;
 import com.digi.xbee.api.exceptions.InvalidOperatingModeException;
@@ -41,14 +41,14 @@ public class GetIOSample802Test {
 	private final static String METHOD_RECEIVE_RAW_IO_PACKET = "receiveRaw802IOPacket";
 		
 	// Variables.
-	private SerialPortRxTx mockedPort;
+	private SerialPortJavacomm mockedPort;
 	
 	private Raw802Device raw802Device;
 	
 	@Before
 	public void setup() {
 		// Mock an RxTx IConnectionInterface.
-		mockedPort = Mockito.mock(SerialPortRxTx.class);
+		mockedPort = Mockito.mock(SerialPortJavacomm.class);
 		Mockito.when(mockedPort.isOpen()).thenReturn(true);
 		
 		// Instantiate an Raw802Device object with basic parameters.
